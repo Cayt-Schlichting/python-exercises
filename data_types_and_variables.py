@@ -30,12 +30,13 @@ else: print("This class is full")
 
 #4)
 num_items = 5
-if num_items > 2:
+prem_member = False
+if num_items > 2 or prem_member:
     discount = .9
     print('You get a discount!')
 else: 
     discount = 1
-    print('You have not bought enough items to get a discount')
+    print('If you buy more items, or become a premium member, you can get a discount!')
 #dictionaries would be a good choice here
 
 #5) password verification
