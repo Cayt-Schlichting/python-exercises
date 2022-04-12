@@ -131,15 +131,25 @@ test_funct([[1,1,1],[1,2,3,4]],cumulative_sum)
 
 # BONUS
 #1)
+import re
+
 def twelveto24(time):
-    is_pm = time[-2:].lower() == 'pm' #true/false if pm
-    #take all but last two characters, then split into hrs and min and make int
+    #validate input - NEED TO FIX THIS
+    # # first 1-1 characters must be between 1 and 12, then colon, then 2 characters between 0 & 59, then am or pm
+    # if not re.match('[0-12]{1,2}:[0-59]{2,2}(am|pm)',time): print('invalid input1')
+    # if not re.match('[0-9]{1,2}:[0-5][0-9](am|pm)',time): print('invalid input2') #doesn't account for 00, or ex: 80
+    # if not re.match('[0-1]?[0-9]:[0-59]{2,2}(am|pm)',time): print('invalid input3') #doesn't account for 00
+    # return 'return'
+    #store if pm as T/F
+    is_pm = time[-2:].lower() == 'pm' 
+    #Drop off last 2 char, then split into hrs and min using ':' and make int
     hr, mn = list(map(int,(time[:-2].split(':')))) 
     if hr == 12 and not is_pm: hr = 0 #if 12am, make zero
     elif hr < 12 and is_pm: hr += 12 #if pm (and not noon-ish) then add 12 hours
     return f'{hr:02}:{mn:02}' #if integers aren't two digits, pad with zero at front
-    return 
 
-test_funct(['11:52am','1:02pm','12:31am','12:52pm'],twelveto24)
+test_funct(['11:52am','1:02pm','01:02pm','12:38am','12:59pm','12:02a','81:12pm','00:43am','0b:33pm','18:15pm'],twelveto24)
+
+
 
 #2) 
